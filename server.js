@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-import startBot from './index';
+const { startBot } = require('./index');
 
 startBot();
 

@@ -59,4 +59,4 @@ client.on('messageCreate', async (msg) => {
   };
 
   // export startBot as default
-  module.export = startBot;
+  module.exports = { startBot };
