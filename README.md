@@ -1,0 +1,2 @@
+# Janet
+Personal Discord Bot
