@@ -1,6 +1,6 @@
 const { Client, MessageEmbed } = require('discord.js');
 const { botIntents, commands, prefix } = require('./config/config');
-const config = require('./config/default');
+// const config = require('./config/default');
 
 const axios = require('axios');
 
@@ -55,7 +55,7 @@ client.on('messageCreate', async (msg) => {
   });
 
   const startBot = () => {
-    client.login(config?.DISCORD_TOKEN || process.env.DISCORD_TOKEN);
+    client.login(process.env.DISCORD_TOKEN);
   };
 
   // export startBot as default
