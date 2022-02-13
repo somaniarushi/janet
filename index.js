@@ -24,11 +24,11 @@ client.on('messageCreate', async (msg) => {
     if (userCmd == commands.hello) {
         msg.channel.send('Hi, there!');
     }
-    else if(userCmd == commands.food) {
+    else if(userCmd.includes(commands.food)) {
 
         let res = await axios.get('https://api.yelp.com/v3/businesses/search', {
           headers: {'Authorization': `Bearer ${process.env.YELP_TOKEN}`},
-          params: {'location': 'berkeley', 'open_now': true}
+          params: {'location': 'berkeley', 'open_now': true, 'term': userCmd.replace(commands.food, '')}
         });
 
         let restaurants = res.data.businesses;
@@ -39,10 +39,10 @@ client.on('messageCreate', async (msg) => {
         msg.channel.send(`I've analysed ${Math.floor(Math.random()*1000000)} meal decisions you've made and decided that you should get **${place.name}**. They're at ${place.location.address1}, have a rating of ${place.rating}/5 and serve ${categories.join(" and ")}.`);
     }
     else if(userCmd == commands.help) {
-      msg.channel.send('Hello, there! Ask Janet for food recommendations using the `?food` command, for help through `?help`, and say hi by typing `?janet`');
+      msg.channel.send('Hello, there! Ask Janet for food recommendations using the `?food` command, music reccs using `?music`, for help through `?help`, and say hi by typing `?janet`');
     }
-    else {
-      msg.author.send("Hey, there! Janet here :)\nI know every thing there is to know in the known universe, but I don't know how give you an answer to your question. \nSorry! :(");
+    else if(userCmd == commands.music) {
+      msg.channel.send('Looking for music now!')
     }
   });
 
