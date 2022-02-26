@@ -10,7 +10,8 @@ const commands = {
     what: 'what', // Sunsetting this for now
     food: 'food',
     help: 'help',
-    music: 'music'
+    music: 'music',
+    response: 'response',
   };
 
   const prefix="?";

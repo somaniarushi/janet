@@ -1,5 +1,6 @@
 const { Client, MessageEmbed } = require('discord.js');
 const { botIntents, commands, prefix } = require('./config/config');
+const { getResponse } = require('./src/gen_sentence');
 // const config = require('./config/default');
 
 const axios = require('axios');
@@ -26,9 +27,10 @@ client.on('messageCreate', async (msg) => {
     }
     else if(userCmd.includes(commands.food)) {
 
+        let prompt = userCmd.replace(commands.food, '');
         let res = await axios.get('https://api.yelp.com/v3/businesses/search', {
           headers: {'Authorization': `Bearer ${process.env.YELP_TOKEN}`},
-          params: {'location': 'berkeley', 'open_now': true, 'term': userCmd.replace(commands.food, '')}
+          params: {'location': 'berkeley', 'open_now': true, 'term': prompt}
         });
 
         let restaurants = res.data.businesses;
@@ -43,6 +45,11 @@ client.on('messageCreate', async (msg) => {
     }
     else if(userCmd == commands.music) {
       msg.channel.send('Looking for music now!')
+    }
+    else if(userCmd.includes(commands.response)) {
+      let prompt = userCmd.replace(commands.response, '');
+      let response = await getResponse(prompt);
+      msg.channel.send(response);
     }
   });
 
