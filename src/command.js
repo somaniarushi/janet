@@ -1,5 +1,6 @@
 const { getResponse } = require('./gen_sentence');
 const {  commands } = require('../config/config');
+const axios = require('axios');
 
 async function handleResponse(msg, userCmd) {
     let prev_messages = await fewShotGenerator(msg);
