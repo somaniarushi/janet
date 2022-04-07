@@ -32,7 +32,7 @@ client.on('messageCreate', async (msg) => {
   });
 
   const startBot = () => {
-    client.login('OTA1OTY5MjEzNDczMTc3Njcx.YYRzlA.-bxHf0k9CWelsir7asgLtqDJXn8');
+    client.login(process.env.DISCORD_TOKEN);
   };
 
   // export startBot as default
